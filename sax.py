@@ -1,4 +1,5 @@
 import xml.sax
+import sys
 
 class MovieHandler(xml.sax.ContentHandler):
     def __init__(self):
