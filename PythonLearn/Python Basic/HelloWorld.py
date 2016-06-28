@@ -1,6 +1,9 @@
 #!/user/bin/python3
 #^.^ coding=utf-8 ^.^#
 
+def cute_split_line():
+    print("*"*20)
+
 class hello_world():
     def __init__(self, want_to_say = "Hello, World"):
         self.want_to_say = want_to_say

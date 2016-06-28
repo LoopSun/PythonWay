@@ -1,9 +1,14 @@
 #!/user/bin/python3
 #^.^ coding=utf-8 ^.^#
-
+from time import ctime
+from functools import partial
 # 1. function define
 # 2. function arguments
 # 3. recursive function
+# 4. closure
+# 5. lambda
+# 6. decorator
+# 7. Partial function
 
 
 #************* function define *************#
@@ -77,3 +82,39 @@ def factorial(n):
         return n * factorial(n-1)
 
 print(factorial(5))
+
+
+#***************** closure *****************#
+def lazy_sum(*args):
+    def sum_args():
+        return sum(args)
+    return sum_args
+
+f = lazy_sum(1, 2, 3 ,4 ,5)
+print("f:", f)
+print("f type:", type(f))
+print("result:", f())
+print("*"*20)
+#***************** lambda *****************#
+
+# lambda x: x * x
+# lambda x, y: x + y
+
+#***************** decorator *****************#
+def log(func):
+    def wrapper(*args, **kwargs):
+        print("called {}()".format(func.__name__))
+        return func(*args, **kwargs)
+    return wrapper
+
+@log
+def now_time():
+    print(ctime())
+
+# now_time() = log(wrapper(func))
+now_time()
+print("*"*20)
+
+#***************** Partial function *****************#
+int2 = partial(int, base = 2)
+print("binary 10101011 to int:", int2("10101011"))
