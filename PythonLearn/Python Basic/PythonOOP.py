@@ -5,6 +5,9 @@ from HelloWorld import cute_split_line
 # 2. inheritance and polymorphism
 # 3. __slots__
 # 4. @property
+# 5. Enum
+# 6. user-defined class
+# 6. meta class
 
 
 #*********** class and object ***********#
@@ -55,8 +58,62 @@ cute_split_line()
 class Student:
     @property
     def score(self):
-        return self.score
+        return self._score
 
-    @property.setter
-    def score(self, score):
-        self.score = score
+    @score.setter
+    def score(self, value):
+        self._score = value
+
+s1 = Student()
+s1.score = 99
+print("Student Score: ", s1.score)
+
+cute_split_line()
+
+#*********** Enum ***********#
+from enum import Enum, unique
+
+@unique
+class Weekday(Enum):
+    Sun = 0
+    Mon = 1
+    Tue = 2
+    Wed = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+
+#*********** user-defined class ***********#
+
+class Rain(object):
+    def __index__(self):
+        self.status = "Sleeping"
+
+    def __str__(self):
+        return "Rain baby is %s"%self.status
+
+    def __getattr__(self, item):
+        return None
+
+    def __call__(self, *args, **kwargs):
+        return "Hi, I am rain."
+
+    def __eq__(self, other):
+        return True
+
+cute_split_line()
+
+#*********** meta class ***********#
+
+def say(self, word = "good night"):
+    print(word)
+
+Say = type("Say", (object,), dict(say=say))
+
+s = Say()
+
+print("Say said:", s.say())
+print("Say type:", type(Say))
+print("s type:", type(s))
+
+cute_split_line()
