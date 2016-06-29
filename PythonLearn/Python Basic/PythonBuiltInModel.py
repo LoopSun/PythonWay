@@ -76,6 +76,94 @@ The Soviet Union's Luna programme was the first to reach the Moon with unmanned 
 '''
 
 c = Counter()
+print("")
 for char in sample_text:
     c[char] = c[char] + 1
 print("counter", c)
+cute_split_line()
+#************ base64 ************#
+cute_split_line()
+#************ struct ************#
+cute_split_line()
+#************ hashlib ************#
+import hashlib
+
+md5 = hashlib.md5()
+sha1 = hashlib.sha1()
+sha224 = hashlib.sha224()
+sha256 = hashlib.sha256()
+sha384 = hashlib.sha384()
+sha512 = hashlib.sha512()
+md5.update("China is a beautiful country.".encode())
+sha1.update("China is a beautiful country.".encode())
+sha224.update("China is a beautiful country.".encode())
+sha256.update("China is a beautiful country.".encode())
+sha384.update("China is a beautiful country.".encode())
+sha512.update("China is a beautiful country.".encode())
+
+print("MD5 Hex Value:", md5.hexdigest())
+print("SHA1 Hex Value:", sha1.hexdigest())
+print("SHA224 Hex Value:", sha224.hexdigest())
+print("SHA256 Hex Value:", sha256.hexdigest())
+print("SHA384 Hex Value:", sha384.hexdigest())
+print("SHA512 Hex Value:", sha512.hexdigest())
+
+cute_split_line()
+#************ itertools ************#
+
+import itertools
+
+natuals = itertools.count(1)
+for i in natuals:
+    print("itertools count element:", i)
+    if i > 10:
+        break
+
+repeat_iter = itertools.repeat(1, 10)
+for i in repeat_iter:
+    print("itertools repeat element:", i)
+
+for char in itertools.chain(range(5), 'DEF'):
+    print("itertool chain:", char)
+
+for key, group in itertools.groupby('AaaBBbCcAAb', lambda c: c.lower()):
+    print("itertools groupby:", key, list(group))
+cute_split_line()
+#************ xml ************#
+# folder 'XML parser' include this
+
+#************ HTMLparser ************#
+
+from html.parser import HTMLParser
+from html.entities import name2codepoint
+from urllib import request
+
+class MyHtmlParser(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        print('<%s>'%tag)
+
+    def handle_endtag(self, tag):
+        print('</%s>' % tag)
+
+    def handle_startendtag(self, tag, attrs):
+        print('<%s>' % tag)
+
+    def handle_data(self, data):
+        print("data:", data)
+
+    def handle_comment(self, data):
+        print("<!---%s--->"%(data))
+
+    def handle_entityref(self, name):
+        print('&%s;'%name)
+
+    def handle_charref(self, name):
+        print('&#%s;'%name)
+
+parser = MyHtmlParser()
+html_file = request.urlopen('http://cn.bing.com/').read()
+parser.feed(html_file.decode())
+
+
+#************* urllib ************#
+from urllib import parse
